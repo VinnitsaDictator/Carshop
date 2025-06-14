@@ -1,0 +1,11 @@
+{% extends 'layout.html'%}
+{% block content %}
+<h2>Auto list</h2>
+<ul>
+    {% for car in cars %}
+    <li>{{ car.brand }} {{ car.name }} - {{ car.year }} - $ {{ car.price }}</li>
+    {% empty %}
+    <li> No cars</li>
+    {% endfor %}
+</ul>
+{% endblock %}

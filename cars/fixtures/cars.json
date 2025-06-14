@@ -1,0 +1,52 @@
+[
+    {
+        "model": "cars.car",
+        "pk": 1,
+        "fields": {
+            "name": "Model S",
+            "brand": "Tesla",
+            "year": 2020,
+            "price": "79999"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 2,
+        "fields": {
+            "name": "Mustang GT",
+            "brand": "Ford",
+            "year": 2019,
+            "price": "55999"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 3,
+        "fields": {
+            "name": "Civic",
+            "brand": "Honda",
+            "year": 2021,
+            "price": "24999"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 4,
+        "fields": {
+            "name": "Camry",
+            "brand": "Toyota",
+            "year": 2022,
+            "price": "27999"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 5,
+        "fields": {
+            "name": "A4",
+            "brand": "Audi",
+            "year": 2023,
+            "price": "40999"
+        }
+    }
+]
