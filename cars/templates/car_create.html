@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <h2>Додати нове авто</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати</button>
+  </form>
+  <a href="{% url 'catalog' %}">Назад до списку авто</a>
+{% endblock %}
