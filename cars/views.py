@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from cars.models import Car
 from cars.forms import CarForm
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 def index(request):
     return render(request, 'index.html')
 
@@ -34,3 +35,14 @@ def car_edit (request, id):
             return redirect("catalog") 
 
     return render(request, "car_edit.html", {"form": form})
+def car_list(request):
+    car_list = Car.objects.all()
+    paginator = Paginator(car_list, 5)  
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'car_list.html', context)
