@@ -25,4 +25,7 @@ urlpatterns = [
     path('catalog/', views.catalog, name = 'catalog'),
     path('create/', views.car_create, name='car_create'),
     path('edit/<int:id>/', views.car_edit, name='car_edit'),
+    path('favourites/', views.favourite_list, name='favourite_list'),
+    path('favourites/add/<int:car_id>/', views.add_to_favourite, name='add_to_favourite'),
+    path('favourites/remove/<int:car_id>/', views.remove_from_favourite, name='remove_from_favourite'),
 ]

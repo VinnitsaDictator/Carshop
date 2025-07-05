@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Улюблені авто</h2>
+<ul class="car-list">
+    {% for car in favourites %}
+    <li>{{ car.brand }} {{ car.name }} - {{ car.year }} - ${{ car.price }}
+        <a href="{% url 'remove_from_favourite' car.id %}" class="btn btn-danger btn-sm">Видалити</a>
+    </li>
+    {% empty %}
+    <li>Список улюблених авто порожній.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'catalog' %}" class="btn btn-secondary">До каталогу</a>
+{% endblock %}
