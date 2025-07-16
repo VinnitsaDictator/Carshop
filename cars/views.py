@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from cars.models import Car
-from cars.forms import CarForm
+from cars.forms import CarForm, RentForm
+from cars.models import Car, Rent
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -10,10 +11,11 @@ def index(request):
 
 def catalog(request):
     cars = Car.objects.all()
+    car_status = {car.id: True for car in cars}
     paginator = Paginator(cars, 5)  # 5 машин на страницу
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'catalog.html', {'page_obj': page_obj})
+    return render(request, 'catalog.html', {'page_obj': page_obj, 'car_status': car_status})
 
 def car_create(request):
     if request.method == 'POST':
@@ -72,3 +74,22 @@ def remove_from_favourite(request, car_id):
         favourites.remove(car_id)
         request.session['favourites'] = favourites
     return redirect('favourite_list')
+
+def rent_car(request):
+    message = None
+    if request.method == 'POST':
+        form = RentForm(request.POST)
+        if form.is_valid():
+            car = form.cleaned_data['car']
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            # Проверка занятости авто на выбранные даты
+            overlap = Rent.objects.filter(car=car, end_date__gte=start_date, start_date__lte=end_date).exists()
+            if overlap:
+                message = 'Авто зайняте на вибрані дати!'
+            else:
+                form.save()
+                return render(request, 'rentcar.html', {'form': RentForm(), 'success': True})
+    else:
+        form = RentForm()
+    return render(request, 'rentcar.html', {'form': form, 'message': message})

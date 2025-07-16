@@ -12,6 +12,7 @@
     <li>{{ car.brand }} {{ car.name }} - {{ car.year }} - $ {{ car.price }}
     <a href="{% url 'car_edit' car.id %}" class="btn btn-secondary btn-sm">Редагувати</a>
     <a href="{% url 'add_to_favourite' car.id %}" class="btn btn-outline-warning btn-sm" style="margin-left: 10px;">В улюблені</a>
+    <a href="{% url 'rent_car' %}?car_id={{ car.id }}" class="btn btn-outline-primary btn-sm" style="margin-left: 10px;">Орендувати</a>
     </li>
     {% empty %}
     <li>No cars</li>
@@ -25,7 +26,7 @@
     {% endif %}
 
     <span style="margin: 0 10px;">
-        Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+        Сторінка  {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
     </span>
 
     {% if page_obj.has_next %}

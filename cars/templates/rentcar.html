@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Оренда авто</h2>
+{% if success %}
+    <div style="color: green;">Авто успішно заброньовано!</div>
+{% endif %}
+{% if message %}
+    <div style="color: red;">{{ message }}</div>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Забронювати</button>
+</form>
+<a href="{% url 'catalog' %}" class="btn btn-secondary" style="margin-top: 10px;">До каталогу</a>
+{% endblock %}
