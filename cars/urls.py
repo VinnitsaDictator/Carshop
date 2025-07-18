@@ -20,6 +20,7 @@ from django.urls import path
 from cars import views
 
 
+
 urlpatterns = [
     path('', views.index, name = 'index'),
     path('catalog/', views.catalog, name = 'catalog'),
@@ -30,4 +31,5 @@ urlpatterns = [
     path('favourites/remove/<int:car_id>/', views.remove_from_favourite, name='remove_from_favourite'),
     path('rent/', views.rent_car, name='rent_car'),
     path('car/<int:id>/', views.car_detail, name='car_detail'),
+   
 ]

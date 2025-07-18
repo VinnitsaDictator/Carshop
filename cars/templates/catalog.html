@@ -50,6 +50,7 @@
 </style>
 <a href="{% url 'car_create' %}" class="btn btn-primary" style="margin-bottom: 15px;">Додати нове авто</a>
 <a href="{% url 'favourite_list' %}" class="btn btn-success" style="margin-bottom: 15px; margin-left: 10px;">Улюблені авто</a>
+
 <ul class="car-list">
     {% for car in page_obj %}
     <li class="car-item">

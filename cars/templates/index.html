@@ -1,4 +1,20 @@
-{% extends 'layout.html'%}
+{% extends 'layout.html' %}
+
 {% block content %}
-<p>My site</p>
+<h2>Список занятых машин сьогодні</h2>
+
+{% if busy_cars %}
+  <ul>
+  {% for car in busy_cars %}
+    <li>
+      {{ car.brand }} {{ car.name }} ({{ car.year }})
+      {% if car.image %}
+        <br><img src="{{ car.image.url }}" alt="{{ car.name }}" width="200">
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>Немає зайнятих машин сьогодні.</p>
+{% endif %}
 {% endblock %}

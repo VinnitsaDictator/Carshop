@@ -96,3 +96,18 @@ def rent_car(request):
 def car_detail(request, id):
     car = Car.objects.get(id=id)
     return render(request, 'car_detail.html', {'car': car})
+
+from django.utils import timezone
+
+def index(request):
+    today = timezone.now().date()
+    # Получаем все аренды, у которых дата окончания >= сегодня
+    active_rents = Rent.objects.filter(end_date__gte=today)
+    # Используем множество, чтобы не было повторяющихся машин
+    busy_cars = list({rent.car for rent in active_rents})
+
+    print("Busy cars count:", len(busy_cars))
+    for car in busy_cars:
+        print(car)
+
+    return render(request, 'index.html', {'busy_cars': busy_cars})
