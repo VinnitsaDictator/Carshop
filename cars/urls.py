@@ -29,4 +29,5 @@ urlpatterns = [
     path('favourites/add/<int:car_id>/', views.add_to_favourite, name='add_to_favourite'),
     path('favourites/remove/<int:car_id>/', views.remove_from_favourite, name='remove_from_favourite'),
     path('rent/', views.rent_car, name='rent_car'),
+    path('car/<int:id>/', views.car_detail, name='car_detail'),
 ]

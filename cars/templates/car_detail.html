@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>{{ car.brand }} {{ car.name }} ({{ car.year }})</h2>
+<p>Ціна: ${{ car.price }}</p>
+{% if car.image %}
+    <img src="{{ car.image.url }}" alt="Фото авто" style="max-width:400px;">
+{% else %}
+    <p>Фото не додано.</p>
+{% endif %}
+<a href="{% url 'catalog' %}" class="btn btn-secondary">Назад до каталогу</a>
+{% endblock %}

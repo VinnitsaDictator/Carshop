@@ -19,7 +19,7 @@ def catalog(request):
 
 def car_create(request):
     if request.method == 'POST':
-        form = CarForm(request.POST)
+        form = CarForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('catalog') 
@@ -37,10 +37,9 @@ def car_edit (request, id):
 
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES, instance=car)
-        
         if form.is_valid():
             form.save()
-            return redirect("catalog") 
+            return redirect("catalog")
 
     return render(request, "car_edit.html", {"form": form})
 
@@ -93,3 +92,7 @@ def rent_car(request):
     else:
         form = RentForm()
     return render(request, 'rentcar.html', {'form': form, 'message': message})
+
+def car_detail(request, id):
+    car = Car.objects.get(id=id)
+    return render(request, 'car_detail.html', {'car': car})

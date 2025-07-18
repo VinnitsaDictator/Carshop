@@ -2,33 +2,87 @@
 {% block content %}
 <h2>Auto list</h2>
 <style>
-.car-list li:nth-child(even) { background: #f2f2f2; }
-.car-list li:nth-child(odd) { background: #fff; }
+.car-list {
+    list-style: none;
+    padding: 0;
+}
+.car-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 2px solid #222;
+    padding: 10px;
+    background: #fff;
+}
+.car-photo {
+    width: 180px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #222;
+    margin-right: 30px;
+    background: #fafafa;
+}
+.car-photo img {
+    max-width: 160px;
+    max-height: 100px;
+}
+.car-info {
+    flex: 1;
+    border: 3px solid #222;
+    padding: 10px;
+    margin-right: 30px;
+    text-align: center;
+}
+.car-actions {
+    display: flex;
+    gap: 20px;
+}
+.car-actions a, .car-actions button {
+    border: 3px solid #222;
+    padding: 10px 20px;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    min-width: 120px;
+}
 </style>
 <a href="{% url 'car_create' %}" class="btn btn-primary" style="margin-bottom: 15px;">Додати нове авто</a>
 <a href="{% url 'favourite_list' %}" class="btn btn-success" style="margin-bottom: 15px; margin-left: 10px;">Улюблені авто</a>
 <ul class="car-list">
     {% for car in page_obj %}
-    <li>{{ car.brand }} {{ car.name }} - {{ car.year }} - $ {{ car.price }}
-    <a href="{% url 'car_edit' car.id %}" class="btn btn-secondary btn-sm">Редагувати</a>
-    <a href="{% url 'add_to_favourite' car.id %}" class="btn btn-outline-warning btn-sm" style="margin-left: 10px;">В улюблені</a>
-    <a href="{% url 'rent_car' %}?car_id={{ car.id }}" class="btn btn-outline-primary btn-sm" style="margin-left: 10px;">Орендувати</a>
+    <li class="car-item">
+        <div class="car-photo">
+            {% if car.image %}
+                <img src="{{ car.image.url }}" alt="Фото авто">
+            {% else %}
+                <span>ФОТО</span>
+            {% endif %}
+        </div>
+        <div class="car-info">
+            <a href="{% url 'car_detail' car.id %}"><strong>{{ car.brand }} {{ car.name }}</strong></a><br>
+            <span>Рік: {{ car.year }}</span><br>
+            <span>Ціна: ${{ car.price }}</span>
+        </div>
+        <div class="car-actions">
+            <a href="{% url 'car_edit' car.id %}">Редагувати</a>
+            <a href="{% url 'add_to_favourite' car.id %}">В улюблені</a>
+            <a href="{% url 'rent_car' %}?car_id={{ car.id }}">Орендувати</a>
+        </div>
     </li>
     {% empty %}
     <li>No cars</li>
     {% endfor %}
 </ul>
-
 <div class="pagination" style="margin-top: 20px;">
     {% if page_obj.has_previous %}
         <a href="?page=1">&laquo; перша</a>
         <a href="?page={{ page_obj.previous_page_number }}">назад</a>
     {% endif %}
-
     <span style="margin: 0 10px;">
         Сторінка  {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
     </span>
-
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}">вперед</a>
         <a href="?page={{ page_obj.paginator.num_pages }}">остання &raquo;</a>

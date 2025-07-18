@@ -6,7 +6,8 @@
             "name": "Model S",
             "brand": "Tesla",
             "year": 2020,
-            "price": "79999"
+            "price": "79999",
+            "image": "media/Amogus.png"
         }
     },
     {
@@ -16,7 +17,8 @@
             "name": "Mustang GT",
             "brand": "Ford",
             "year": 2019,
-            "price": "55999"
+            "price": "55999",
+            "image": "media/Amogus.png"
         }
     },
     {
@@ -26,7 +28,8 @@
             "name": "Civic",
             "brand": "Honda",
             "year": 2021,
-            "price": "24999"
+            "price": "24999",
+            "image": "media/Amogus.png"
         }
     },
     {
@@ -36,7 +39,8 @@
             "name": "Camry",
             "brand": "Toyota",
             "year": 2022,
-            "price": "27999"
+            "price": "27999",
+            "image": "media/Amogus.png"
         }
     },
     {
@@ -46,7 +50,8 @@
             "name": "A4",
             "brand": "Audi",
             "year": 2023,
-            "price": "40999"
+            "price": "40999",
+            "image": "media/Amogus.png"
         }
     }
 ]
